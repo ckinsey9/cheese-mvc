@@ -1,0 +1,52 @@
+body {
+    font-family: sans-serif;
+    color: black;
+    background-color: #fffd93;
+}
+
+h1 {
+    height: 75px;
+    text-align: center;
+    padding-top: 36px;
+    font-size: 2em;
+    text-decoration: underline;
+}
+
+nav {
+    height:40px;
+    background-color: grey;
+    overflow: hidden;
+}
+
+nav a {
+
+    font-size: 1.7em;
+    color: snow;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: black;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+}
+
+table, th, td {
+    border: 2px solid black;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+tr:hover {
+background-color: grey;
+}
