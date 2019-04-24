@@ -18,8 +18,8 @@
             <th>Description</th>
         </tr>
         <tr th:each="cheese : ${cheeses}">
-            <td th:text="${cheese.key}">Key</td>
-            <td th:text="${cheese.value}">Value</td>
+            <td th:text="${cheese.getName()}">Cheese</td>
+            <td th:text="${cheese.getDescription()}">Description</td>
         </tr>
     </table>
 
