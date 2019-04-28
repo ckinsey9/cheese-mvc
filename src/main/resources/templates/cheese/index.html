@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head">
 </head>
-<body>
+<body class="container">
 
     <h1 th:text="${title}">Default Title</h1>
 
@@ -12,14 +12,14 @@
 
 
 
-    <table>
+    <table class="table">
         <tr>
             <th>Cheese</th>
             <th>Description</th>
         </tr>
         <tr th:each="cheese : ${cheeses}">
-            <td th:text="${cheese.getName()}">Cheese</td>
-            <td th:text="${cheese.getDescription()}">Description</td>
+            <td th:text="${cheese.name}">Cheese</td>
+            <td th:text="${cheese.description}">Description</td>
         </tr>
     </table>
 
