@@ -60,7 +60,8 @@ public class  CheeseController {
     }
 
     @RequestMapping(value = "remove", method = RequestMethod.POST)
-    public String processRemoveCheeseForm(@RequestParam int[] cheeseIds) {
+    public String processRemoveCheeseForm(@RequestParam(value="cheeseIds",
+            required = false, defaultValue = "") int[] cheeseIds) {
 
         for (int cheeseId : cheeseIds) {
             CheeseData.remove(cheeseId);
@@ -76,8 +77,9 @@ public class  CheeseController {
     }
 
 
-    @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.POST)
-    public String processEditForm( int cheeseId,  String name,  String description) {
+    @RequestMapping(value = "editCheese", method = RequestMethod.POST)
+    public String processEditForm(@RequestParam int cheeseId,@RequestParam  String name,
+                                  @RequestParam String description) {
         Cheese editCheese = CheeseData.getById(cheeseId);
         editCheese.setName(name);
         editCheese.setDescription(description);
