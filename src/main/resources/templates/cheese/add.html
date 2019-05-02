@@ -8,7 +8,7 @@
 
 <nav th:replace="fragments :: nav"></nav>
 
-<form method="post" style="..." th:object="${cheese}">
+<form method="post" style="..." th:object="${cheese}" >
     <div class="form-group">
         <label th:for="name">Name</label>
         <input class="form-control" th:field="*{name}" />
@@ -20,13 +20,18 @@
         <span th:errors="*{description}" class="error"></span>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" >
         <label th:for="type">Type</label>
         <select th:field="*{type}">
             <option th:each="cheeseType : ${cheeseTypes}"
                     th:text="${cheeseType.name}"
                     th:value="${cheeseType}"></option>
         </select>
+    </div>
+    <div class="form-group">
+        <label th:for="rating">Rating</label>
+        <input class= "form-control" th:field="*{rating}" />
+        <span th:errors="*{rating}" class="error"></span>
     </div>
     <input type="submit" value="Add Cheese" />
 </form>

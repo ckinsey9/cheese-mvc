@@ -33,4 +33,15 @@ public class CheeseData {
         return theCheese;
     }
 
+
+    //edit the cheese in question
+    public static void edit(int id, String name, String description, CheeseType type,
+            int rating) {
+        Cheese cheeseToEdit = getById(id);
+        cheeseToEdit.setName(name);
+        cheeseToEdit.setDescription(description);
+        cheeseToEdit.setType(type);
+        cheeseToEdit.setRating(rating);
+    }
+
 }

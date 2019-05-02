@@ -42,7 +42,9 @@ public class  CheeseController {
                                        Errors errors, Model model) {
 
         if (errors.hasErrors()) {
+
             model.addAttribute("title", "Add Cheese");
+            model.addAttribute("cheeseTypes", CheeseType.values());
             return "cheese/add";
         }
 
@@ -71,21 +73,35 @@ public class  CheeseController {
 
     @RequestMapping(value= "edit/{cheeseId}", method = RequestMethod.GET)
     public String displayEditForm(Model model, @PathVariable int cheeseId) {
-        model.addAttribute("editCheese", CheeseData.getById(cheeseId));
+        Cheese originalCheese = CheeseData.getById(cheeseId);
+        model.addAttribute(originalCheese);
+        model.addAttribute("originalCheese", originalCheese);
+        model.addAttribute("cheeseTypes", CheeseType.values());
+
 
         return "cheese/edit";
     }
 
 
-    @RequestMapping(value = "editCheese", method = RequestMethod.POST)
-    public String processEditForm(@RequestParam int cheeseId,@RequestParam  String name,
-                                  @RequestParam String description) {
-        Cheese editCheese = CheeseData.getById(cheeseId);
-        editCheese.setName(name);
-        editCheese.setDescription(description);
+    @RequestMapping(value = "edit/{cheeseId}", method = RequestMethod.POST)
+    public String processEditForm(@PathVariable int cheeseId,
+            @ModelAttribute @Valid Cheese editCheese,
+                                  Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            Cheese originalCheese = CheeseData.getById(cheeseId);
+            model.addAttribute("originalCheese", originalCheese);
+            model.addAttribute("cheeseTypes", CheeseType.values());
+            return "cheese/edit";
+        }
 
 
-        return "redirect:"; // TODO this line is not working...
+        CheeseData.edit(cheeseId,
+                editCheese.getName(), editCheese.getDescription(),
+                editCheese.getType(), editCheese.getRating());
+
+        return "redirect:";
 
     }
+    //TODO fix edit form and Id numbering
 }

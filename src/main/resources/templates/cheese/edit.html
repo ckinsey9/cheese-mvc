@@ -4,21 +4,37 @@
 </head>
 <body class="container">
 
-<h1 th:text="'Edit Cheese ' + ${editCheese.name} + '(' + ${editCheese.cheeseId} + ')'">Default Title</h1>
+<h1 th:text="'Edit Cheese: ' + ${originalCheese.name} + '(' + ${originalCheese.cheeseId} + ')'">Default Title</h1>
 
 <nav th:replace="fragments :: nav"></nav>
 
-<form method="post" action="/cheese/editCheese">
-    <div class="form-group">
-        <label for="name">Name</label>
-        <input class="form-control" type="text" id="name" name="name" th:value="${editCheese.name}"/>
-    </div>
-    <div class="form-group">
-        <label for="description">Description</label>
-        <input class= "form-control" type="text" id="description" name="description" th:value="${editCheese.description}"/>
-        <input type="hidden" th:value="${editCheese.cheeseId}" name="cheeseId"  id="cheeseId" />
-    </div>
 
+<form method="post"  th:object="${originalCheese}">
+    <div class="form-group">
+        <label th:for="name">Name</label>
+        <input class="form-control" th:field="*{name}"/>
+        <span th:errors="*{name}" class="error"></span>
+
+    </div>
+    <div class="form-group">
+        <label th:for="description">Description</label>
+        <input class= "form-control" th:field="*{description}"/>
+       <span th:errors="*{description}" class="error"></span>
+    </div>
+    <div class="form-group" >
+        <label th:for="type">Type</label>
+        <select th:field="*{type}">
+            <option th:each="cheeseType : ${cheeseTypes}"
+                    th:text="${cheeseType.name}"
+                    th:value="${cheeseType}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label th:for="rating">Description</label>
+        <input class= "form-control" th:field="*{rating}" />
+        <span th:errors="*{rating}" class="error"></span>
+    </div>
+    <input type="hidden" th:value="${originalCheese.cheeseId}" name="cheeseId"  id="cheeseId" />
     <input type="submit" value="Edit Cheese" />
 </form>
 
