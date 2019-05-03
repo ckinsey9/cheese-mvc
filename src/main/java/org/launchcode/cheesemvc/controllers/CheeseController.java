@@ -4,6 +4,7 @@ package org.launchcode.cheesemvc.controllers;
 import org.launchcode.cheesemvc.models.Cheese;
 import org.launchcode.cheesemvc.models.CheeseData;
 import org.launchcode.cheesemvc.models.CheeseType;
+import org.launchcode.cheesemvc.models.Ratings;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -33,6 +34,7 @@ public class  CheeseController {
         model.addAttribute("title", "Add Cheese");
         model.addAttribute(new Cheese());
         model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("ratings", Ratings.values());
 
         return "cheese/add";
     }
@@ -45,6 +47,8 @@ public class  CheeseController {
 
             model.addAttribute("title", "Add Cheese");
             model.addAttribute("cheeseTypes", CheeseType.values());
+            model.addAttribute("ratings", Ratings.values());
+
             return "cheese/add";
         }
 
@@ -77,6 +81,8 @@ public class  CheeseController {
         model.addAttribute(originalCheese);
         model.addAttribute("originalCheese", originalCheese);
         model.addAttribute("cheeseTypes", CheeseType.values());
+        model.addAttribute("ratings", Ratings.values());
+
 
 
         return "cheese/edit";
@@ -90,8 +96,11 @@ public class  CheeseController {
 
         if (errors.hasErrors()) {
             Cheese originalCheese = CheeseData.getById(cheeseId);
+            model.addAttribute(editCheese);
             model.addAttribute("originalCheese", originalCheese);
             model.addAttribute("cheeseTypes", CheeseType.values());
+            model.addAttribute("ratings", Ratings.values());
+
             return "cheese/edit";
         }
 
@@ -100,8 +109,8 @@ public class  CheeseController {
                 editCheese.getName(), editCheese.getDescription(),
                 editCheese.getType(), editCheese.getRating());
 
-        return "redirect:";
+        return "redirect:/cheese"; //must specify /cheese, otherwise getting error
 
     }
-    //TODO fix edit form and Id numbering
+    //TODO fix Id numbering
 }

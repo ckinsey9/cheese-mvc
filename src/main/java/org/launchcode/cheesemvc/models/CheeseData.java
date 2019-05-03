@@ -36,7 +36,7 @@ public class CheeseData {
 
     //edit the cheese in question
     public static void edit(int id, String name, String description, CheeseType type,
-            int rating) {
+            Ratings rating) {
         Cheese cheeseToEdit = getById(id);
         cheeseToEdit.setName(name);
         cheeseToEdit.setDescription(description);

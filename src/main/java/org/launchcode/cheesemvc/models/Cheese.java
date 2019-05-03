@@ -16,20 +16,18 @@ public class Cheese {
     @Size(min=1, message= "Description must not be empty")
     private String description;
 
-    @Min(1)
-    @Max(5)
-    private int rating;
+
+    private Ratings rating;
 
     private CheeseType type;
 
     private int cheeseId;
     private static int nextId = 1;
 
-    public Cheese(String name, String description, int rating) {
+    public Cheese(String name, String description) {
         this();
         this.name = name;
         this.description = description;
-        this.rating = rating;
     }
 
     public Cheese() {
@@ -73,11 +71,11 @@ public class Cheese {
         this.type = type;
     }
 
-    public int getRating() {
+    public Ratings getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Ratings rating) {
         this.rating = rating;
     }
 }
