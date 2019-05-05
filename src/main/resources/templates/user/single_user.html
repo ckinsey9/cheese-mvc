@@ -4,13 +4,13 @@
 </head>
 <body class="container">
 
-<h1 th:text="${title}">Default Title</h1>
+<h1 th:text="${title + user.username}">Default Title</h1>
 
 
 <div>
     <ul>
-        <li th:each="user : ${users}"><a th:href="@{'/user/single_user' + ${user.userId}}"
-        th:text="${user.username}">Username</a></li>
+        <li th:text="${'Email: '+ user.email}">Email</li>
+        <li th:text="${'Date Joined: ' + {timeJoined}}">Date Joined</li>
     </ul>
 </div>
 
