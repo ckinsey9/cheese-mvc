@@ -9,6 +9,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Date;
 
 @Controller
 @RequestMapping("user")
@@ -54,6 +55,8 @@ public class UserController {
             return "user/add";
         }
         UserData.add(user);
+        Date current = new Date(System.currentTimeMillis());
+        user.setDate(current);
         model.addAttribute("users", UserData.getAll());
         model.addAttribute("title", "Welcome, " + user.getUsername()+"!");
         return "user/index";
@@ -65,9 +68,7 @@ public class UserController {
         User single = UserData.getById(userId);
         model.addAttribute("title", "User Information: ");
         model.addAttribute("user", single);
-        model.addAttribute("timeJoined", single.getDate().toString());
 
-        //TODO FINISH THE DATE FIELD / VIEW
         return "user/single_user";
     }
 }

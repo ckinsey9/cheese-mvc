@@ -30,7 +30,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
-        this.date = new Date();
+        this.date = new Date(System.currentTimeMillis());
     }
 
     public User() {
