@@ -1,5 +1,6 @@
 package org.launchcode.cheesemvc.models;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class User {
     String username;
 
     @NotNull
+    @Email
     String email;
 
     @NotNull
